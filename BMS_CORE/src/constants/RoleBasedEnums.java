@@ -1,11 +1,22 @@
 package constants;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RoleBasedEnums {
 	
-	public static final String BMS_OWNER = "BMS_OWNER";
-	public static final String BMS_MANAGER = "BMS_MANAGER";
-	public static final String BMS_ACCOUNTANT = "BMS_ACCOUNTANT";
-	public static final String BMS_EXICUTIVE = "BMS_EXICUTIVE";
+	public static final String BMS_OWNER_STRING = "BMS_OWNER";
+	public static final String BMS_MANAGER_STRING = "BMS_MANAGER";
+	public static final String BMS_ACCOUNTANT_STRING = "BMS_ACCOUNTANT";
+	public static final String BMS_EXICUTIVE_STRING = "BMS_EXICUTIVE";
+	
+	public static final Map<String, String> BMS_ROLES = new HashMap<String, String>() {
+		private static final long serialVersionUID = 1L;
+	{
+        put("M", "BMS_MANAGER");
+        put("E", "BMS_EXICUTIVE");
+        put("A", "BMS_ACCOUNTANT");
+    }};
 
 	public static enum BMS_OWNER {
 	    CHECK_GST("1", "Check GST"),
@@ -13,7 +24,10 @@ public class RoleBasedEnums {
 		CHECK_WORKER_DETAILS("3", "Check Worker Details"),
 		CHECK_INVENTORY_ITEMS("4", "Check Inventory Items"),
 		GENRATE_BILLS("5", "Genrate Bill"),
-		ORDER_ITEMS("6", "Order Items");
+		ORDER_ITEMS("6", "Order Items"),
+		GRANT_ACCESS("7", "Check Pending Requests"),
+		REVOKE_ACCESS("8", "Remove Any Employee"),
+		BACK("9", "Back");
 
 	    private final String id;
 	    private final String key;
@@ -37,7 +51,8 @@ public class RoleBasedEnums {
 		CHECK_WORKER_DETAILS("2", "Check Worker Details"),
 		CHECK_INVENTORY_ITEMS("3", "Check Inventory Items"),
 		GENRATE_BILLS("4", "Genrate Bill"),
-		ORDER_ITEMS("5", "Order Items");
+		ORDER_ITEMS("5", "Order Items"),
+		BACK("9", "Back");
 
 	    private final String id;
 	    private final String key;
@@ -58,7 +73,8 @@ public class RoleBasedEnums {
 	
 	public static enum BMS_ACCOUNTANT {
 	    CHECK_BILLS("1", "Check Bills"),
-	    CHECK_PRODUCT_GST("2", "Check Product GST");
+	    CHECK_PRODUCT_GST("2", "Check Product GST"),
+	    BACK("9", "Back");
 
 	    private final String id;
 	    private final String key;
@@ -79,7 +95,8 @@ public class RoleBasedEnums {
 	
 	public static enum BMS_EXICUTIVE {
 	    CHECK_BILLS("1", "Check Bills"),
-		GENRATE_BILLS("2", "Genrate Bill");
+		GENRATE_BILLS("2", "Genrate Bill"),
+		BACK("9", "Back");
 
 	    private final String id;
 	    private final String key;
