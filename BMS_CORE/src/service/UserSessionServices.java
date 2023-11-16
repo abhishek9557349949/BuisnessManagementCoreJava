@@ -36,13 +36,15 @@ public class UserSessionServices {
 	
 	private static void forLogin() throws Exception{
 		boolean isBackNeeded = false;
+		boolean isValidLogin = true;
 		System.out.println("Enter User name followed by your Password: ");
     	@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
 		String userName = sc.nextLine();
 		String password = sc.nextLine();
-		while(!isBackNeeded){
-			if(UserSession.getLoginDetails(userName, password)){
+		while(isValidLogin && !isBackNeeded){
+			isValidLogin = UserSession.getLoginDetails(userName, password);
+			if(isValidLogin){
 				if(BMSConstants.loginInfo.getRole().equalsIgnoreCase(RoleBasedEnums.BMS_OWNER_STRING)){
 					System.out.println("Hello " + BMSConstants.loginInfo.getClientName());
 					System.out.println("Select what you want to do?");
