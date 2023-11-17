@@ -18,7 +18,7 @@ public class BMSLoginInfo {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static String getClientName() {
+	public String getClientName() {
 		return clientName;
 	}
 	public void setClientName(String clientName) {
@@ -30,16 +30,16 @@ public class BMSLoginInfo {
 	public void setMailId(String mailId) {
 		BMSLoginInfo.mailId = mailId;
 	}
-	public static int getFailedLoginAttempts() {
+	public int getFailedLoginAttempts() {
 		return failedLoginAttempts;
 	}
-	public static void setFailedLoginAttempts(int failedLoginAttempts) {
+	public void setFailedLoginAttempts(int failedLoginAttempts) {
 		BMSLoginInfo.failedLoginAttempts = failedLoginAttempts;
 	}
-	public static String getAccountStatus() {
+	public String getAccountStatus() {
 		return accountStatus;
 	}
-	public static void setAccountStatus(String accountStatus) {
+	public void setAccountStatus(String accountStatus) {
 		BMSLoginInfo.accountStatus = accountStatus;
 	}
 	public static String getBusinessName() {
@@ -54,22 +54,22 @@ public class BMSLoginInfo {
 	public void setRole(String role) {
 		BMSLoginInfo.role = role;
 	}
-	public static String getApprovedByOwner() {
+	public String getApprovedByOwner() {
 		return approvedByOwner;
 	}
-	public static void setApprovedByOwner(String approvedByOwner) {
+	public void setApprovedByOwner(String approvedByOwner) {
 		BMSLoginInfo.approvedByOwner = approvedByOwner;
 	}
-	public static String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
-	public static void setUserName(String userName) {
+	public void setUserName(String userName) {
 		BMSLoginInfo.userName = userName;
 	}
-	public static String getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public static void setPassword(String password) {
+	public void setPassword(String password) {
 		BMSLoginInfo.password = password;
 	}
     

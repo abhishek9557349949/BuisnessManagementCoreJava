@@ -52,7 +52,7 @@ public class RoleBasedEnums {
 		CHECK_INVENTORY_ITEMS("3", "Check Inventory Items"),
 		GENRATE_BILLS("4", "Genrate Bill"),
 		ORDER_ITEMS("5", "Order Items"),
-		BACK("9", "Back");
+		BACK("6", "Back");
 
 	    private final String id;
 	    private final String key;

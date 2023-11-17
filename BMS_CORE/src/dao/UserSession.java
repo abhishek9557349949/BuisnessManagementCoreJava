@@ -120,4 +120,10 @@ public class UserSession {
 		}
 		
 	}
+
+	public static void setSignUp(boolean b) {
+		// TODO Auto-generated method stub
+		System.out.println("");
+	}
+
 }

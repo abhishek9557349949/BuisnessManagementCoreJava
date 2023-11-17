@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import models.BMSLoginInfo;
 import models.ScanSignupData;
+import models.WorkerDetails;
 
 public class PrintTables {
 	
@@ -25,10 +26,21 @@ public class PrintTables {
 		int i = 0;
 		CommandLineTable table = new CommandLineTable();
 		table.setShowVerticalLines(true);
-		table.setHeaders("Sr. No.", "Employee Name", "Employee Mail ID", "Bsiness Name", "Role");
+		table.setHeaders("Sr. No.", "User Name", "Employee Mail ID", "Bsiness Name", "Role");
 		for(BMSLoginInfo info : loginInfo){
 			table.addRow(Integer.toString(++i), info.getClientName(), info.getMailId(), info.getBusinessName(), info.getRole());
 		}
 		table.print();
+	}
+	
+	public static void printWorkerData(ArrayList<WorkerDetails> workerdata){
+			int i = 0;
+			CommandLineTable table = new CommandLineTable();
+			table.setShowVerticalLines(true);
+			table.setHeaders("Sr. No.", "Client Name", "Mail Id", "Business Name", "Role");
+			for(WorkerDetails data : workerdata){
+				table.addRow(Integer.toString(++i), data.getClientName(), data.getMailId(), data.getBusinessName(), data.getRole());
+			}
+			table.print();
 	}
 }
