@@ -1,20 +1,17 @@
 package main;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
-
 import constants.BMSConstants;
-import constants.RoleBasedEnums;
-import dao.UserSession;
+import constants.DisplayStrings;
 import service.UserSessionServices;
 
 public class Main {
 	    public static void main(String[] args) throws Exception {
 	    	boolean isQuit = false;
-	    	System.out.println("Welcome to the Pheonix Buisness");
+	    	System.out.println(DisplayStrings.WELCOME_STRING);
 	    	while(!isQuit){
-		    	System.out.println("Select What you want to do:");
+		    	System.out.println(DisplayStrings.LOGIN_PAGE_CHOICE_QUESTION);
 	    		for(BMSConstants.LoginPage id : BMSConstants.LoginPage.class.getEnumConstants()){
 					System.out.println(id.getId() + ". " + id.getKey());
 				}

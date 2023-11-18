@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import commandLineTable.PrintTables;
 import constants.BMSConstants;
+import constants.DisplayStrings;
 import constants.RoleBasedEnums;
 import dao.UserChoiceDao;
 import models.BMSLoginInfo;
@@ -26,7 +27,7 @@ public class UserChoiceServices {
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.GRANT_ACCESS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.GRANT_ACCESS.getKey())){
 				UserChoiceDao.getAndApprovePendingRequest(BMSConstants.loginInfo.getBusinessName());
-				System.out.println("Enter the name of the employee to approve his request or press 0 to back");
+				System.out.println(DisplayStrings.EMPLOYEE_APPROVAL_QUESTION);
 		    	String approverequest = sc.nextLine();
 		    	if(!approverequest.equalsIgnoreCase("0")){
 		    		UserChoiceDao.approveRequestByName(approverequest);
@@ -35,23 +36,23 @@ public class UserChoiceServices {
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.ORDER_ITEMS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.ORDER_ITEMS.getKey())){
 				UserChoiceDao.checkInventory();
-				System.out.println("Enter Item name to be orderd with quantity, both space seprated");
+				System.out.println(DisplayStrings.ITEM_TO_BE_ORDERS_MESSAGE);
 				String orderItem = sc.nextLine();
 				Thread.sleep(1000);
-				System.out.println("Item has been sent to orderd List");
+				System.out.println(DisplayStrings.ITEM_ORDER_SUCCESS_MESSAGE);
 				Thread.sleep(4000);
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_INVENTORY_ITEMS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_INVENTORY_ITEMS.getKey())){
 				UserChoiceDao.checkInventory();
-				System.out.println("You Will be redirected to main page in 5 secs.");
+				System.out.println(DisplayStrings.REDIRECT_MESSAGE);
 				Thread.sleep(4000);
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.REVOKE_ACCESS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.REVOKE_ACCESS.getKey())){
 				ArrayList<WorkerDetails> workerdata = UserChoiceDao.checkWorkerList();
 				PrintTables.printWorkerData(workerdata);
-				System.out.println("Enter the user name of the employee to revoke his access");
+				System.out.println(DisplayStrings.REVOKE_ACCESS_QUESTION);
 				String employeeName = sc.nextLine();
 				UserChoiceDao.revokeAccess(employeeName);
 				return false;
@@ -73,7 +74,7 @@ public class UserChoiceServices {
 				////////////////////////////////////////////////////////////////
 				return false;
 			}else{
-				System.out.println("This is not a valid request. Please try again");
+				System.out.println(DisplayStrings.INVALID_OPTION_SELECTED_MESSAGE);
 			}
 			
 		}else if(BMSConstants.loginInfo.getRole().equalsIgnoreCase(RoleBasedEnums.BMS_ACCOUNTANT_STRING)){
@@ -87,7 +88,7 @@ public class UserChoiceServices {
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_ACCOUNTANT.CHECK_BILLS.getKey())){
 					return true;
 			}else{
-				System.out.println("This is not a valid request. Please try again");
+				System.out.println(DisplayStrings.INVALID_OPTION_SELECTED_MESSAGE);
 			}
 		}else if(BMSConstants.loginInfo.getRole().equalsIgnoreCase(RoleBasedEnums.BMS_EXICUTIVE_STRING)){
 			if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_EXICUTIVE.BACK.getId()) 
@@ -100,7 +101,7 @@ public class UserChoiceServices {
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_EXICUTIVE.GENRATE_BILLS.getKey())){
 					return true;
 			}else{
-				System.out.println("This is not a valid request. Please try again");
+				System.out.println(DisplayStrings.INVALID_OPTION_SELECTED_MESSAGE);
 			}
 		}else if(BMSConstants.loginInfo.getRole().equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER_STRING)){
 			if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.BACK.getId()) 
@@ -109,7 +110,7 @@ public class UserChoiceServices {
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.CHECK_INVENTORY_ITEMS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.CHECK_INVENTORY_ITEMS.getKey())){
 				UserChoiceDao.checkInventory();
-				System.out.println("You Will be redirected to main page in 5 secs.");
+				System.out.println(DisplayStrings.REDIRECT_MESSAGE);
 				Thread.sleep(4000);
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.GENRATE_BILLS.getId()) 
@@ -118,10 +119,10 @@ public class UserChoiceServices {
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.ORDER_ITEMS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.ORDER_ITEMS.getKey())){
 				UserChoiceDao.checkInventory();
-				System.out.println("Enter Item name to be orderd with quantity, both space seprated");
+				System.out.println(DisplayStrings.ITEM_TO_BE_ORDERS_MESSAGE);
 				String orderItem = sc.nextLine();
 				Thread.sleep(1000);
-				System.out.println("Item has been sent to orderd List");
+				System.out.println(DisplayStrings.ITEM_ORDER_SUCCESS_MESSAGE);
 				Thread.sleep(4000);
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_MANAGER.CHECK_BILLS.getId()) 
@@ -132,6 +133,8 @@ public class UserChoiceServices {
 				ArrayList<WorkerDetails> workerdata = UserChoiceDao.checkWorkerList();
 				PrintTables.printWorkerData(workerdata);
 				return false;
+			}else{
+				System.out.println(DisplayStrings.INVALID_OPTION_SELECTED_MESSAGE);
 			}
 		}
 		

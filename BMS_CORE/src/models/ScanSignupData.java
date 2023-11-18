@@ -2,7 +2,6 @@ package models;
 
 import java.util.Scanner;
 
-import commandLineTable.CommandLineTable;
 import constants.BMSConstants;
 import constants.RoleBasedEnums;
 import dao.UserSession;

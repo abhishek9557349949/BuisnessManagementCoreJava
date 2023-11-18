@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import commandLineTable.CommandLineTable;
+import constants.DisplayStrings;
 import jdbc_connector.Create_connection;
 import models.BMSLoginInfo;
 import models.WorkerDetails;
@@ -87,7 +88,7 @@ public class UserChoiceDao {
         PreparedStatement statement = connection.prepareStatement(revokeAccess);
         statement.setString(1, name);
         statement.executeUpdate();
-        System.out.println("The request has been approved and Account has been revoked.");
+        System.out.println(DisplayStrings.REVOKE_SUCCESS_MESSAGE);
         statement.close();
         Create_connection.closeConnection(connection);
 	}
