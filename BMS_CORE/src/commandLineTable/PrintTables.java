@@ -3,7 +3,9 @@ package commandLineTable;
 import java.util.ArrayList;
 
 import models.BMSLoginInfo;
+import models.BillsData;
 import models.ScanSignupData;
+import models.SpecificBillsDetails;
 import models.WorkerDetails;
 
 public class PrintTables {
@@ -42,5 +44,41 @@ public class PrintTables {
 				table.addRow(Integer.toString(++i), data.getClientName(), data.getMailId(), data.getBusinessName(), data.getRole());
 			}
 			table.print();
+	}
+
+	public static void printBillsList(ArrayList<BillsData> billsData) {
+		CommandLineTable table = new CommandLineTable();
+		table.setShowVerticalLines(true);
+		table.setHeaders("Bill ID", "Customer Name", "Contact Numer", "Customer's Address", "Date of Bill", "Total Amount", "Discount Availed");
+		for(BillsData data : billsData){
+			table.addRow(data.getBillId(), data.getCustomerName(), data.getPhoneNumer(), data.getAddress()
+					, data.getBillDate(), data.getTotalAmount(), (data.getDiscount() != null) ?  data.getDiscount() : "0");
+		}
+		table.print();
+	}
+
+	public static void printCompleteBill(ArrayList<SpecificBillsDetails> billData) {
+		if(billData != null && !billData.isEmpty()){
+			CommandLineTable table = new CommandLineTable();
+			table.setShowVerticalLines(true);
+			table.setHeaders("", "Pheonix Business", "Noida", "");
+			table.addRow("Bill Id", billData.get(1).getBillId(), "Name", billData.get(1).getCustomerName());
+			table.addRow("Bill Date", billData.get(1).getBillId(), "Email", billData.get(1).getEmail());
+			table.addRow("","", "Contact", billData.get(1).getPhoneNumber());
+			table.addRow("", "", "Address", billData.get(1).getAddress());
+			table.addRow("----------", "----------", "----------", "--------------------");
+			double totalAmount = 0;
+			table.addRow("ProductName","Per Unit Price", "Quantity", "Total Price (With 5% GST)");
+			
+			for(SpecificBillsDetails data : billData){
+				table.addRow(data.getProductName(),Double.toString(data.getProductUnitPrice()), Integer.toString(data.getQuantity()), Double.toString(data.getTotalPrice()));
+				totalAmount += data.getTotalPrice();
+			}
+			table.addRow("----------", "----------", "----------", "----------");
+			table.addRow("", "", "Total Amount", Double.toString(totalAmount));
+			table.print();
+		}else{
+			System.out.println("No Information found for this Bill.");
+		}
 	}
 }

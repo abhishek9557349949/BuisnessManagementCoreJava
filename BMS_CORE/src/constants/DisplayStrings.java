@@ -29,4 +29,6 @@ public class DisplayStrings {
 	public static final String REVOKE_ACCESS_QUESTION = "Enter the user name of the employee to revoke his access";
 	
 	public static final String REVOKE_SUCCESS_MESSAGE = "The request has been approved and Account has been revoked.";
+
+	public static final String SPECIFIC_BILL_INFO_INPUT_MESSAGE = "Enter the Bill Id to get the complete data of the perticular Bill";
 }

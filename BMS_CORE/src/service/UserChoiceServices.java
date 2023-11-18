@@ -8,9 +8,8 @@ import commandLineTable.PrintTables;
 import constants.BMSConstants;
 import constants.DisplayStrings;
 import constants.RoleBasedEnums;
+import dao.ManageBillsDao;
 import dao.UserChoiceDao;
-import models.BMSLoginInfo;
-import models.ScanSignupData;
 import models.WorkerDetails;
 
 public class UserChoiceServices {
@@ -18,6 +17,7 @@ public class UserChoiceServices {
 	public static boolean userSelectedChoice(String userChoice, String UserRole) throws SQLException, InterruptedException{
 		
 
+		@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
 		
 		if(UserRole.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER_STRING)){
@@ -67,7 +67,7 @@ public class UserChoiceServices {
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_BILLS.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_BILLS.getKey())){
-				////////////////////////////////////////////////////////////////
+				ManageBillsService.getAllBillsData();
 				return false;
 			}else if(userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_GST.getId()) 
 	    			|| userChoice.equalsIgnoreCase(RoleBasedEnums.BMS_OWNER.CHECK_GST.getKey())){
