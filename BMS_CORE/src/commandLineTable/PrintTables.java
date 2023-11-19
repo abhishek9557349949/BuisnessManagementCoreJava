@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import models.BMSLoginInfo;
 import models.BillsData;
+import models.GSTDetails;
 import models.ScanSignupData;
 import models.SpecificBillsDetails;
 import models.WorkerDetails;
@@ -62,8 +63,8 @@ public class PrintTables {
 			CommandLineTable table = new CommandLineTable();
 			table.setShowVerticalLines(true);
 			table.setHeaders("", "Pheonix Business", "Noida", "");
-			table.addRow("Bill Id", billData.get(1).getBillId(), "Name", billData.get(1).getCustomerName());
-			table.addRow("Bill Date", billData.get(1).getBillId(), "Email", billData.get(1).getEmail());
+			table.addRow("Bill Id", billData.get(0).getBillId(), "Name", billData.get(1).getCustomerName());
+			table.addRow("Bill Date", billData.get(0).getBillId(), "Email", billData.get(1).getEmail());
 			table.addRow("","", "Contact", billData.get(1).getPhoneNumber());
 			table.addRow("", "", "Address", billData.get(1).getAddress());
 			table.addRow("----------", "----------", "----------", "--------------------");
@@ -80,5 +81,38 @@ public class PrintTables {
 		}else{
 			System.out.println("No Information found for this Bill.");
 		}
+	}
+
+	public static void printGSTDetails(ArrayList<GSTDetails> gstInfo) {
+
+		if(gstInfo != null && !gstInfo.isEmpty()){
+			CommandLineTable table = new CommandLineTable();
+			table.setShowVerticalLines(true);
+			double totalTurnOver = 0;
+			double totalGST = 0;
+			table.setHeaders("", "", "", "Total Bills Summary", "", "");
+			table.addRow("Bill Number", "Product Name", "Quantity", "Per Unit Price", "Total Price", "GST");
+			for(GSTDetails data : gstInfo){
+				table.addRow(Integer.toString(data.getBillId()),data.getProductName(), Integer.toString(data.getQuantity()),Double.toString(data.getUnitPrice()),  Double.toString(data.getTotalPrice()), Double.toString(data.getGst()));
+				totalTurnOver += data.getTotalPrice();
+				totalGST += data.getGst();
+			}
+			table.print();
+			printGSTandTurnOverTable(totalTurnOver, totalGST, gstInfo.get(0).getBillDate(), gstInfo.get(gstInfo.size()-1).getBillDate());
+		}else{
+			System.out.println("No Information found for any Bill or GST.");
+		}
+		
+	}
+	
+	public static void printGSTandTurnOverTable(double totalTurnOver, double totalGST, String startDate, String endDate){
+		System.out.println("Details of Gst and Total TurnOver are as follows: ");
+		CommandLineTable table = new CommandLineTable();
+		table.setShowVerticalLines(true);
+		table.setHeaders("Start Date", startDate);
+		table.addRow("End Date", endDate);
+		table.addRow("Total GST", Double.toString(totalGST));
+		table.addRow("Total TurnOver", Double.toString(totalTurnOver));
+		table.print();
 	}
 }

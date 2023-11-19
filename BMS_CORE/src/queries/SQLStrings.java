@@ -36,4 +36,9 @@ public class SQLStrings {
 			+ "ELSE (bi.UNIT_PRICE * bi.QUANTITY) + (bi.UNIT_PRICE * bi.QUANTITY * 0.05) END AS TOTAL_PRICE FROM bms_bills b JOIN bms_customers c ON b.CUSTOMER_ID = c.CUSTOMER_ID JOIN bms_bill_items bi ON b.BILL_ID = bi.BILL_ID JOIN "
 			+ "bms_products p ON bi.PRODUCT_ID = p.PRODUCT_ID WHERE b.BILL_ID = ?;";
 
+	public static final String gstDetails = "SELECT bi.BILL_ID, b.BILL_DATE, p.PRODUCT_NAME, bi.QUANTITY, p.UNIT_PRICE, ROUND(CASE WHEN p.DISCOUNT IS NOT NULL THEN ((p.UNIT_PRICE * bi.QUANTITY) - (p.DISCOUNT / 100 * (p.UNIT_PRICE * "
+			+ "bi.QUANTITY))) + ((p.UNIT_PRICE * bi.QUANTITY) * 0.05) ELSE (p.UNIT_PRICE * bi.QUANTITY) + (p.UNIT_PRICE * bi.QUANTITY * 0.05) END, 2) AS TOTAL_PRICE, ROUND((CASE WHEN p.DISCOUNT IS NOT NULL THEN ((p.UNIT_PRICE * "
+			+ "bi.QUANTITY) - (p.DISCOUNT / 100 * (p.UNIT_PRICE * bi.QUANTITY))) + ((p.UNIT_PRICE * bi.QUANTITY) * 0.05) ELSE (p.UNIT_PRICE * bi.QUANTITY) + (p.UNIT_PRICE * bi.QUANTITY * 0.05) END) * 0.05, 2) AS GST FROM bms_bill_items"
+			+ " bi JOIN bms_products p ON bi.PRODUCT_ID = p.PRODUCT_ID JOIN bms_bills b ON bi.BILL_ID = b.BILL_ID ORDER BY b.BILL_DATE ASC;";
+
 }
